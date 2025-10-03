@@ -1918,11 +1918,11 @@ const WhatsAppClone: React.FC = () => {
                             </div>
                           </div>
                         )}
-                        <div className="flex items-end gap-1">
-                          <p className="text-[#111B21] text-[14.2px] break-words whitespace-pre-wrap leading-[19px] pb-[3px]">
+                        <div>
+                          <p className="text-[#111B21] text-[14.2px] break-words whitespace-pre-wrap leading-[19px] pr-[70px]">
                             {message.text}
                           </p>
-                          <div className="flex items-center gap-1 flex-shrink-0 pb-[2px]">
+                          <div className="flex items-center gap-1 justify-end mt-[-15px]">
                             {message.isEdited && (
                               <span className="text-[10px] text-[#667781] italic">edited</span>
                             )}
