@@ -2448,7 +2448,7 @@ const WhatsAppClone: React.FC = () => {
 
         <div
           className={`${darkMode ? 'bg-[#111B21]' : 'bg-white'} shadow-2xl overflow-hidden ${
-            viewMode === 'mobile' ? 'max-w-[420px] mx-auto rounded-xl h-[700px]' : 'h-[700px]'
+            viewMode === 'mobile' ? 'max-w-[390px] mx-auto rounded-xl h-[844px]' : 'h-[700px]'
           }`}
         >
           {viewMode === 'desktop' ? (
