@@ -761,23 +761,28 @@ const WhatsAppClone: React.FC = () => {
         }
       });
 
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       const canvas = await html2canvas(element, {
-        backgroundColor: null,
+        backgroundColor: darkMode ? '#0B141A' : '#E5DDD5',
         scale: 2,
         useCORS: true,
         allowTaint: false,
         logging: false,
         imageTimeout: 0,
-        removeContainer: true,
-        windowWidth: element.scrollWidth,
-        windowHeight: element.scrollHeight
+        removeContainer: false,
+        width: element.offsetWidth,
+        height: element.offsetHeight,
+        x: 0,
+        y: 0,
+        scrollX: 0,
+        scrollY: 0,
+        foreignObjectRendering: false
       });
 
       const link = document.createElement('a');
       link.download = `whatsapp-chat-${selectedChat?.name || 'export'}-${Date.now()}.png`;
-      link.href = canvas.toDataURL('image/png');
+      link.href = canvas.toDataURL('image/png', 1.0);
       link.click();
     } catch (error) {
       console.error('Download failed:', error);
