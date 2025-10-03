@@ -1705,6 +1705,18 @@ const WhatsAppClone: React.FC = () => {
               <span>End-to-end encrypted</span>
             </div>
           </div>
+
+          <div className={`absolute bottom-8 left-0 right-0 ${darkMode ? 'text-[#8696A0]' : 'text-[#667781]'} text-xs text-center px-8`}>
+            <div className="flex items-center justify-center gap-4 flex-wrap mb-3">
+              <a href="#" className="hover:underline">Download WhatsApp for Mac</a>
+              <span>•</span>
+              <a href="#" className="hover:underline">Download WhatsApp for Windows</a>
+            </div>
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <Monitor className="w-4 h-4 inline" />
+              <span>Use WhatsApp on your computer</span>
+            </div>
+          </div>
         </div>
       );
     }
