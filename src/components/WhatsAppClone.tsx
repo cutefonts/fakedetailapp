@@ -753,9 +753,6 @@ const WhatsAppClone: React.FC = () => {
 
     try {
       const element = chatWindowRef.current;
-      const originalBackground = element.style.backgroundColor;
-
-      element.style.backgroundColor = darkMode ? '#0B141A' : '#FFFFFF';
 
       const images = element.querySelectorAll('img');
       images.forEach((img) => {
@@ -764,19 +761,19 @@ const WhatsAppClone: React.FC = () => {
         }
       });
 
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       const canvas = await html2canvas(element, {
-        backgroundColor: darkMode ? '#0B141A' : '#FFFFFF',
+        backgroundColor: null,
         scale: 2,
         useCORS: true,
         allowTaint: false,
         logging: false,
         imageTimeout: 0,
-        removeContainer: true
+        removeContainer: true,
+        windowWidth: element.scrollWidth,
+        windowHeight: element.scrollHeight
       });
-
-      element.style.backgroundColor = originalBackground;
 
       const link = document.createElement('a');
       link.download = `whatsapp-chat-${selectedChat?.name || 'export'}-${Date.now()}.png`;
@@ -785,9 +782,6 @@ const WhatsAppClone: React.FC = () => {
     } catch (error) {
       console.error('Download failed:', error);
       alert('Failed to download chat. Please try again.');
-      if (chatWindowRef.current) {
-        chatWindowRef.current.style.backgroundColor = darkMode ? '#0B141A' : '#FFFFFF';
-      }
     }
   };
 
@@ -1718,7 +1712,7 @@ const WhatsAppClone: React.FC = () => {
     }
 
     return (
-      <div ref={chatWindowRef} className="flex-1 flex flex-col h-full">
+      <div ref={chatWindowRef} className="flex-1 flex flex-col h-full" style={{ backgroundColor: darkMode ? '#0B141A' : '#E5DDD5' }}>
         <div className={`${
           viewMode === 'mobile'
             ? 'bg-[#075E54]'
