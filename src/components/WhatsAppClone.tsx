@@ -1464,9 +1464,9 @@ const WhatsAppClone: React.FC = () => {
 
   const renderChatList = () => (
     <div className={`flex flex-col h-full ${darkMode ? 'bg-[#111B21]' : 'bg-white'}`}>
-      <div className={`${darkMode ? 'bg-[#111B21]' : 'bg-white'} px-4 py-4`}>
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-[#00A884] text-[24px] font-semibold">WhatsApp</h1>
+      <div className={`${darkMode ? 'bg-[#111B21]' : 'bg-white'} ${viewMode === 'mobile' ? 'px-3 py-3' : 'px-4 py-4'}`}>
+        <div className={`flex items-center justify-between ${viewMode === 'mobile' ? 'mb-3' : 'mb-4'}`}>
+          <h1 className={`text-[#00A884] font-semibold ${viewMode === 'mobile' ? 'text-[20px]' : 'text-[24px]'}`}>WhatsApp</h1>
           <div className="flex items-center space-x-1">
             <button
               onClick={() => setShowThemeSettings(!showThemeSettings)}
@@ -1523,21 +1523,23 @@ const WhatsAppClone: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative mb-4">
-          <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-[#8696A0]" />
+        <div className={`relative ${viewMode === 'mobile' ? 'mb-3' : 'mb-4'}`}>
+          <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 text-[#8696A0] ${viewMode === 'mobile' ? 'w-4 h-4' : 'w-5 h-5'}`} />
           <input
             type="text"
             placeholder="Search or start a new chat"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className={`w-full pl-11 pr-4 py-2.5 rounded-lg ${darkMode ? 'bg-[#2A3942] text-[#E9EDEF] placeholder-[#8696A0] focus:bg-[#3B4A54]' : 'bg-[#F0F2F5] text-[#111B21] placeholder-[#8696A0] focus:bg-[#E8EAED]'} text-[15px] outline-none transition-all`}
+            className={`w-full pr-4 rounded-lg ${darkMode ? 'bg-[#2A3942] text-[#E9EDEF] placeholder-[#8696A0] focus:bg-[#3B4A54]' : 'bg-[#F0F2F5] text-[#111B21] placeholder-[#8696A0] focus:bg-[#E8EAED]'} outline-none transition-all ${viewMode === 'mobile' ? 'pl-10 py-2 text-[14px]' : 'pl-11 py-2.5 text-[15px]'}`}
           />
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className={`flex items-center ${viewMode === 'mobile' ? 'gap-1.5 overflow-x-auto scrollbar-hide' : 'gap-2'}`}>
           <button
             onClick={() => setChatFilter('all')}
-            className={`px-5 py-1.5 rounded-full text-[14px] font-medium transition-colors ${
+            className={`rounded-full font-medium transition-colors flex-shrink-0 ${
+              viewMode === 'mobile' ? 'px-4 py-1 text-[13px]' : 'px-5 py-1.5 text-[14px]'
+            } ${
               chatFilter === 'all'
                 ? 'bg-[#D1F4DD] text-[#00A884]'
                 : 'bg-[#F0F2F5] text-[#5E5E5E] hover:bg-[#E8EAED]'
@@ -1547,7 +1549,9 @@ const WhatsAppClone: React.FC = () => {
           </button>
           <button
             onClick={() => setChatFilter('unread')}
-            className={`px-5 py-1.5 rounded-full text-[14px] font-medium transition-colors ${
+            className={`rounded-full font-medium transition-colors flex-shrink-0 ${
+              viewMode === 'mobile' ? 'px-4 py-1 text-[13px]' : 'px-5 py-1.5 text-[14px]'
+            } ${
               chatFilter === 'unread'
                 ? 'bg-[#D1F4DD] text-[#00A884]'
                 : 'bg-[#F0F2F5] text-[#5E5E5E] hover:bg-[#E8EAED]'
@@ -1557,7 +1561,9 @@ const WhatsAppClone: React.FC = () => {
           </button>
           <button
             onClick={() => setChatFilter('groups')}
-            className={`px-5 py-1.5 rounded-full text-[14px] font-medium transition-colors ${
+            className={`rounded-full font-medium transition-colors flex-shrink-0 ${
+              viewMode === 'mobile' ? 'px-4 py-1 text-[13px]' : 'px-5 py-1.5 text-[14px]'
+            } ${
               chatFilter === 'groups'
                 ? 'bg-[#D1F4DD] text-[#00A884]'
                 : 'bg-[#F0F2F5] text-[#5E5E5E] hover:bg-[#E8EAED]'
@@ -1567,7 +1573,9 @@ const WhatsAppClone: React.FC = () => {
           </button>
           <button
             onClick={() => setChatFilter('groups')}
-            className={`px-5 py-1.5 rounded-full text-[14px] font-medium transition-colors ${
+            className={`rounded-full font-medium transition-colors flex-shrink-0 ${
+              viewMode === 'mobile' ? 'px-4 py-1 text-[13px]' : 'px-5 py-1.5 text-[14px]'
+            } ${
               chatFilter === 'groups'
                 ? 'bg-[#D1F4DD] text-[#00A884]'
                 : 'bg-[#F0F2F5] text-[#5E5E5E] hover:bg-[#E8EAED]'
@@ -1583,7 +1591,9 @@ const WhatsAppClone: React.FC = () => {
           <div
             key={chat.id}
             onClick={() => setSelectedChat(chat)}
-            className={`flex items-center px-4 py-3 cursor-pointer ${
+            className={`flex items-center cursor-pointer ${
+              viewMode === 'mobile' ? 'px-3 py-2.5' : 'px-4 py-3'
+            } ${
               darkMode
                 ? `hover:bg-[#2A3942] ${selectedChat?.id === chat.id ? 'bg-[#2A3942]' : ''}`
                 : `hover:bg-[#F5F6F6] ${selectedChat?.id === chat.id ? 'bg-[#F0F2F5]' : ''}`
@@ -1593,47 +1603,51 @@ const WhatsAppClone: React.FC = () => {
               <img
                 src={chat.avatar}
                 alt={chat.name}
-                className="w-[49px] h-[49px] rounded-full object-cover"
+                className={`rounded-full object-cover ${viewMode === 'mobile' ? 'w-[45px] h-[45px]' : 'w-[49px] h-[49px]'}`}
                 crossOrigin="anonymous"
               />
               {chat.online && (
-                <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#00A884] border-2 border-white rounded-full"></div>
+                <div className={`absolute bottom-0 right-0 bg-[#00A884] border-2 border-white rounded-full ${viewMode === 'mobile' ? 'w-2.5 h-2.5' : 'w-3 h-3'}`}></div>
               )}
             </div>
-            <div className={`ml-3 flex-1 min-w-0 border-b ${darkMode ? 'border-[#2A3942]' : 'border-[#E9EDEF]'} pb-3`}>
-              <div className="flex items-center justify-between mb-1">
-                <div className="flex items-center space-x-2">
-                  <h3 className={`font-normal ${darkMode ? 'text-[#E9EDEF]' : 'text-[#111B21]'} text-[16px] truncate`}>{chat.name}</h3>
+            <div className={`flex-1 min-w-0 border-b ${darkMode ? 'border-[#2A3942]' : 'border-[#E9EDEF]'} ${viewMode === 'mobile' ? 'ml-2.5 pb-2.5' : 'ml-3 pb-3'}`}>
+              <div className={`flex items-center justify-between ${viewMode === 'mobile' ? 'mb-0.5' : 'mb-1'}`}>
+                <div className="flex items-center space-x-2 min-w-0 flex-1">
+                  <h3 className={`font-normal ${darkMode ? 'text-[#E9EDEF]' : 'text-[#111B21]'} truncate ${viewMode === 'mobile' ? 'text-[15px]' : 'text-[16px]'}`}>{chat.name}</h3>
                   {chat.isGroup && (
-                    <Users className="w-4 h-4 text-[#667781]" />
+                    <Users className={`text-[#667781] flex-shrink-0 ${viewMode === 'mobile' ? 'w-3.5 h-3.5' : 'w-4 h-4'}`} />
                   )}
                   {chat.isPinned && (
-                    <Pin className="w-3 h-3 text-[#667781]" />
+                    <Pin className={`text-[#667781] flex-shrink-0 ${viewMode === 'mobile' ? 'w-2.5 h-2.5' : 'w-3 h-3'}`} />
                   )}
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
-                  <span className="text-[12px] text-[#667781]">{chat.timestamp}</span>
+                  <span className={`text-[#667781] ${viewMode === 'mobile' ? 'text-[11px]' : 'text-[12px]'}`}>{chat.timestamp}</span>
                   {chat.isMuted && (
-                    <VolumeX className="w-4 h-4 text-[#667781]" />
+                    <VolumeX className={`text-[#667781] ${viewMode === 'mobile' ? 'w-3.5 h-3.5' : 'w-4 h-4'}`} />
                   )}
                 </div>
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center min-w-0 flex-1">
                   {chat.isTyping ? (
-                    <span className="text-[14px] text-[#00A884] italic">typing...</span>
+                    <span className={`text-[#00A884] italic ${viewMode === 'mobile' ? 'text-[13px]' : 'text-[14px]'}`}>typing...</span>
                   ) : (
                     <>
                       {chat.lastMessage === chat.messages[chat.messages.length - 1]?.text &&
                        chat.messages[chat.messages.length - 1]?.sender === 'me' && (
-                        <CheckCheck className="w-4 h-4 text-[#53BDEB] mr-1 flex-shrink-0" />
+                        <CheckCheck className={`text-[#53BDEB] mr-1 flex-shrink-0 ${viewMode === 'mobile' ? 'w-3.5 h-3.5' : 'w-4 h-4'}`} />
                       )}
-                      <p className="text-[14px] text-[#667781] truncate">{chat.lastMessage}</p>
+                      <p className={`text-[#667781] truncate ${viewMode === 'mobile' ? 'text-[13px]' : 'text-[14px]'}`}>{chat.lastMessage}</p>
                     </>
                   )}
                 </div>
                 {chat.unreadCount > 0 && (
-                  <span className="flex-shrink-0 bg-[#00A884] text-white text-[12px] rounded-full min-w-[20px] h-[20px] flex items-center justify-center font-medium ml-2 px-1.5">
+                  <span className={`flex-shrink-0 bg-[#00A884] text-white rounded-full flex items-center justify-center font-medium ml-2 ${
+                    viewMode === 'mobile'
+                      ? 'text-[11px] min-w-[18px] h-[18px] px-1'
+                      : 'text-[12px] min-w-[20px] h-[20px] px-1.5'
+                  }`}>
                     {chat.unreadCount}
                   </span>
                 )}
@@ -1644,39 +1658,45 @@ const WhatsAppClone: React.FC = () => {
       </div>
 
       <div className={`${darkMode ? 'bg-[#202C33] border-[#2A3942]' : 'bg-white border-gray-200'} border-t`}>
-        <div className="flex items-center justify-around py-1">
+        <div className={`flex items-center justify-around ${viewMode === 'mobile' ? 'py-0.5' : 'py-1'}`}>
           <button
             onClick={() => setActiveTab('chats')}
-            className={`flex flex-col items-center px-8 py-2 relative ${
+            className={`flex flex-col items-center relative ${
+              viewMode === 'mobile' ? 'px-6 py-1.5' : 'px-8 py-2'
+            } ${
               activeTab === 'chats' ? 'text-[#00A884]' : darkMode ? 'text-[#8696A0]' : 'text-[#54656F]'
             }`}
           >
-            <svg className="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg className={`${viewMode === 'mobile' ? 'w-5 h-5 mb-0.5' : 'w-6 h-6 mb-1'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
-            <span className="text-[13px] font-medium">Chats</span>
+            <span className={`font-medium ${viewMode === 'mobile' ? 'text-[12px]' : 'text-[13px]'}`}>Chats</span>
           </button>
           <button
             onClick={() => setActiveTab('status')}
-            className={`flex flex-col items-center px-8 py-2 relative ${
+            className={`flex flex-col items-center relative ${
+              viewMode === 'mobile' ? 'px-6 py-1.5' : 'px-8 py-2'
+            } ${
               activeTab === 'status' ? 'text-[#00A884]' : darkMode ? 'text-[#8696A0]' : 'text-[#54656F]'
             }`}
           >
-            <svg className="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className={`${viewMode === 'mobile' ? 'w-5 h-5 mb-0.5' : 'w-6 h-6 mb-1'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
             </svg>
-            <span className="text-[13px] font-medium">Updates</span>
+            <span className={`font-medium ${viewMode === 'mobile' ? 'text-[12px]' : 'text-[13px]'}`}>Updates</span>
           </button>
           <button
             onClick={() => setActiveTab('calls')}
-            className={`flex flex-col items-center px-8 py-2 relative ${
+            className={`flex flex-col items-center relative ${
+              viewMode === 'mobile' ? 'px-6 py-1.5' : 'px-8 py-2'
+            } ${
               activeTab === 'calls' ? 'text-[#00A884]' : darkMode ? 'text-[#8696A0]' : 'text-[#54656F]'
             }`}
           >
-            <svg className="w-6 h-6 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg className={`${viewMode === 'mobile' ? 'w-5 h-5 mb-0.5' : 'w-6 h-6 mb-1'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
-            <span className="text-[13px] font-medium">Calls</span>
+            <span className={`font-medium ${viewMode === 'mobile' ? 'text-[12px]' : 'text-[13px]'}`}>Calls</span>
           </button>
         </div>
       </div>
