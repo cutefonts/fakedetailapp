@@ -1711,15 +1711,26 @@ const WhatsAppClone: React.FC = () => {
 
     return (
       <div ref={chatWindowRef} className="flex-1 flex flex-col h-full">
-        <div className={`${darkMode ? 'bg-[#202C33] border-[#2A3942]' : 'bg-[#F0F2F5] border-gray-200'} px-4 py-2.5 flex items-center justify-between border-l flex-shrink-0`}>
-          <div className="flex items-center">
+        <div className={`${
+          viewMode === 'mobile'
+            ? 'bg-[#464A4D]'
+            : darkMode
+              ? 'bg-[#202C33] border-[#2A3942]'
+              : 'bg-[#F0F2F5] border-gray-200'
+        } px-4 py-2.5 flex items-center justify-between border-l flex-shrink-0`}>
+          <div className="flex items-center flex-1">
             {viewMode === 'mobile' && (
               <button
                 onClick={() => setSelectedChat(null)}
-                className="mr-3 text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors"
+                className="mr-4 text-white hover:bg-[#5A5E61] p-2 rounded-full transition-colors"
               >
                 <ArrowLeft className="w-6 h-6" />
               </button>
+            )}
+            {viewMode === 'mobile' && selectedChat.unreadCount > 0 && (
+              <div className="mr-4 text-white font-medium text-[22px]">
+                {selectedChat.unreadCount}
+              </div>
             )}
             <img
               src={selectedChat.avatar}
@@ -1728,38 +1739,57 @@ const WhatsAppClone: React.FC = () => {
               onClick={() => setShowProfileInfo(true)}
               crossOrigin="anonymous"
             />
-            <div className="ml-3">
-              <h2 className={`${darkMode ? 'text-[#E9EDEF]' : 'text-[#111B21]'} font-normal text-[16px]`}>{selectedChat.name}</h2>
-              <p className="text-[#667781] text-[13px]">
-                {selectedChat.isTyping ? (
-                  <span className="text-[#00A884]">typing...</span>
-                ) : selectedChat.online ? (
-                  'online'
-                ) : (
-                  `last seen at ${selectedChat.timestamp}`
-                )}
-              </p>
+            <div className="ml-3 flex-1">
+              <h2 className={`${
+                viewMode === 'mobile'
+                  ? 'text-white'
+                  : darkMode
+                    ? 'text-[#E9EDEF]'
+                    : 'text-[#111B21]'
+              } font-normal text-[16px]`}>{selectedChat.name}</h2>
+              {viewMode !== 'mobile' && (
+                <p className="text-[#667781] text-[13px]">
+                  {selectedChat.isTyping ? (
+                    <span className="text-[#00A884]">typing...</span>
+                  ) : selectedChat.online ? (
+                    'online'
+                  ) : (
+                    `last seen at ${selectedChat.timestamp}`
+                  )}
+                </p>
+              )}
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <button className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors">
-              <Video className="w-5 h-5" />
-            </button>
-            <button className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors">
-              <Phone className="w-5 h-5" />
-            </button>
-            <button className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors">
-              <Search className="w-5 h-5" />
-            </button>
-            <div className="relative">
-              <button
-                onClick={() => setShowChatMenu(!showChatMenu)}
-                className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors"
-              >
-                <MoreVertical className="w-5 h-5" />
-              </button>
-              {showChatMenu && (
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl z-50 py-2 border border-gray-200">
+            {viewMode === 'mobile' ? (
+              <>
+                <button className="text-white hover:bg-[#5A5E61] p-2 rounded-full transition-colors">
+                  <Video className="w-6 h-6" />
+                </button>
+                <button className="text-white hover:bg-[#5A5E61] p-2 rounded-full transition-colors">
+                  <Phone className="w-6 h-6" />
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors">
+                  <Video className="w-5 h-5" />
+                </button>
+                <button className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors">
+                  <Phone className="w-5 h-5" />
+                </button>
+                <button className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors">
+                  <Search className="w-5 h-5" />
+                </button>
+                <div className="relative">
+                  <button
+                    onClick={() => setShowChatMenu(!showChatMenu)}
+                    className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors"
+                  >
+                    <MoreVertical className="w-5 h-5" />
+                  </button>
+                  {showChatMenu && (
+                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl z-50 py-2 border border-gray-200">
                   <button
                     onClick={() => {
                       setShowProfileInfo(true);
@@ -1789,9 +1819,11 @@ const WhatsAppClone: React.FC = () => {
                     <Trash2 className="w-4 h-4 text-red-500" />
                     <span className="text-red-500">Delete contact</span>
                   </button>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </>
+            )}
           </div>
         </div>
 
