@@ -2056,26 +2056,13 @@ const WhatsAppClone: React.FC = () => {
           )}
 
           <div className={`px-4 py-2 flex items-center gap-2 ${darkMode ? 'bg-[#202C33]' : 'bg-white'}`}>
-            <button
-              className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors"
-              onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-            >
-              <Smile className="w-6 h-6" />
-            </button>
-            <button
-              className="text-[#54656F] hover:bg-[#E4E6E8] p-2 rounded-full transition-colors"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <Paperclip className="w-6 h-6" />
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              className="hidden"
-              accept="image/*,video/*,audio/*,.pdf,.doc,.docx"
-              onChange={handleFileUpload}
-            />
-            <div className={`flex-1 ${darkMode ? 'bg-[#2A3942]' : 'bg-[#F0F2F5]'} rounded-full`}>
+            <div className={`flex-1 ${darkMode ? 'bg-[#2A3942]' : 'bg-[#F0F2F5]'} rounded-full flex items-center gap-2 px-3`}>
+              <button
+                className="text-[#54656F] hover:bg-[#E4E6E8] p-1 rounded-full transition-colors"
+                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+              >
+                <Smile className="w-6 h-6" />
+              </button>
               <input
                 type="text"
                 value={messageText}
@@ -2090,7 +2077,20 @@ const WhatsAppClone: React.FC = () => {
                   }
                 }}
                 placeholder="Type a message"
-                className={`w-full px-4 py-2.5 text-[15px] ${darkMode ? 'text-[#E9EDEF] placeholder-[#8696A0]' : 'text-[#111B21] placeholder-[#667781]'} outline-none bg-transparent`}
+                className={`flex-1 py-2.5 text-[15px] ${darkMode ? 'text-[#E9EDEF] placeholder-[#8696A0]' : 'text-[#111B21] placeholder-[#667781]'} outline-none bg-transparent`}
+              />
+              <button
+                className="text-[#54656F] hover:bg-[#E4E6E8] p-1 rounded-full transition-colors"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <Paperclip className="w-6 h-6" />
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                className="hidden"
+                accept="image/*,video/*,audio/*,.pdf,.doc,.docx"
+                onChange={handleFileUpload}
               />
             </div>
             {messageText.trim() ? (
