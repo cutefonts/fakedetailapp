@@ -2462,14 +2462,14 @@ const WhatsAppClone: React.FC = () => {
             </div>
           ) : (
             <div className="h-full">
-              {selectedChat ? (
-                renderChatWindow()
-              ) : (
+              {!selectedChat ? (
                 <>
                   {activeTab === 'chats' && renderChatList()}
                   {activeTab === 'status' && renderStatusTab()}
                   {activeTab === 'calls' && renderCallsTab()}
                 </>
+              ) : (
+                renderChatWindow()
               )}
             </div>
           )}
