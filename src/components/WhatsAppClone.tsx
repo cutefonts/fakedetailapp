@@ -2075,7 +2075,7 @@ const WhatsAppClone: React.FC = () => {
               accept="image/*,video/*,audio/*,.pdf,.doc,.docx"
               onChange={handleFileUpload}
             />
-            <div className={`flex-1 ${darkMode ? 'bg-[#2A3942]' : 'bg-white'} rounded-lg`}>
+            <div className={`flex-1 ${darkMode ? 'bg-[#2A3942]' : 'bg-white'} rounded-full`}>
               <input
                 type="text"
                 value={messageText}
