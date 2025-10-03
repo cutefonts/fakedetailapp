@@ -1713,25 +1713,12 @@ const WhatsAppClone: React.FC = () => {
       <div ref={chatWindowRef} className="flex-1 flex flex-col h-full">
         <div className={`${
           viewMode === 'mobile'
-            ? 'bg-[#464A4D]'
+            ? 'bg-[#075E54]'
             : darkMode
               ? 'bg-[#202C33] border-[#2A3942]'
               : 'bg-[#F0F2F5] border-gray-200'
         } px-4 py-2.5 flex items-center justify-between border-l flex-shrink-0`}>
           <div className="flex items-center flex-1">
-            {viewMode === 'mobile' && (
-              <button
-                onClick={() => setSelectedChat(null)}
-                className="mr-4 text-white hover:bg-[#5A5E61] p-2 rounded-full transition-colors"
-              >
-                <ArrowLeft className="w-6 h-6" />
-              </button>
-            )}
-            {viewMode === 'mobile' && selectedChat.unreadCount > 0 && (
-              <div className="mr-4 text-white font-medium text-[22px]">
-                {selectedChat.unreadCount}
-              </div>
-            )}
             <img
               src={selectedChat.avatar}
               alt={selectedChat.name}
@@ -1763,10 +1750,10 @@ const WhatsAppClone: React.FC = () => {
           <div className="flex items-center space-x-2">
             {viewMode === 'mobile' ? (
               <>
-                <button className="text-white hover:bg-[#5A5E61] p-2 rounded-full transition-colors">
+                <button className="text-white hover:bg-[#056B5E] p-2 rounded-full transition-colors">
                   <Video className="w-6 h-6" />
                 </button>
-                <button className="text-white hover:bg-[#5A5E61] p-2 rounded-full transition-colors">
+                <button className="text-white hover:bg-[#056B5E] p-2 rounded-full transition-colors">
                   <Phone className="w-6 h-6" />
                 </button>
               </>
