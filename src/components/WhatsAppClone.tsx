@@ -2476,15 +2476,18 @@ const WhatsAppClone: React.FC = () => {
               {renderChatWindow()}
             </div>
           ) : (
-            <div className="flex h-full">
-              <div className="w-[420px]">
-                {activeTab === 'chats' && renderChatList()}
-                {activeTab === 'status' && renderStatusTab()}
-                {activeTab === 'calls' && renderCallsTab()}
-              </div>
-              <div className="max-w-[390px] mx-auto h-full overflow-hidden">
-                {renderChatWindow()}
-              </div>
+            <div className="flex h-full w-full">
+              {!selectedChat ? (
+                <div className="w-full h-full">
+                  {activeTab === 'chats' && renderChatList()}
+                  {activeTab === 'status' && renderStatusTab()}
+                  {activeTab === 'calls' && renderCallsTab()}
+                </div>
+              ) : (
+                <div className="w-full h-full overflow-hidden">
+                  {renderChatWindow()}
+                </div>
+              )}
             </div>
           )}
         </div>
