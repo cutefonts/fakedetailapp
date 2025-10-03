@@ -761,36 +761,23 @@ const WhatsAppClone: React.FC = () => {
         }
       });
 
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      const rect = element.getBoundingClientRect();
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       const canvas = await html2canvas(element, {
-        backgroundColor: null,
+        backgroundColor: darkMode ? '#0B141A' : '#E5DDD5',
         scale: 2,
         useCORS: true,
         allowTaint: false,
         logging: false,
         imageTimeout: 0,
-        removeContainer: true,
-        width: rect.width,
-        height: rect.height,
-        windowWidth: rect.width,
-        windowHeight: rect.height,
+        removeContainer: false,
+        width: element.offsetWidth,
+        height: element.offsetHeight,
         x: 0,
         y: 0,
         scrollX: 0,
-        scrollY: -window.scrollY,
-        foreignObjectRendering: false,
-        onclone: (clonedDoc) => {
-          const clonedElement = clonedDoc.querySelector('[data-chat-window]') as HTMLElement;
-          if (clonedElement) {
-            clonedElement.style.position = 'relative';
-            clonedElement.style.left = '0';
-            clonedElement.style.top = '0';
-            clonedElement.style.transform = 'none';
-          }
-        }
+        scrollY: 0,
+        foreignObjectRendering: false
       });
 
       const link = document.createElement('a');
@@ -1730,7 +1717,7 @@ const WhatsAppClone: React.FC = () => {
     }
 
     return (
-      <div ref={chatWindowRef} data-chat-window className="flex-1 flex flex-col h-full" style={{ backgroundColor: darkMode ? '#0B141A' : '#E5DDD5' }}>
+      <div ref={chatWindowRef} className="flex-1 flex flex-col h-full" style={{ backgroundColor: darkMode ? '#0B141A' : '#E5DDD5' }}>
         <div className={`${
           viewMode === 'mobile'
             ? 'bg-[#075E54]'
