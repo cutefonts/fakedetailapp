@@ -2446,11 +2446,7 @@ const WhatsAppClone: React.FC = () => {
           </div>
         </div>
 
-        <div
-          className={`${darkMode ? 'bg-[#111B21]' : 'bg-white'} shadow-2xl overflow-hidden ${
-            viewMode === 'mobile' ? 'max-w-[390px] mx-auto rounded-xl h-[844px]' : 'h-[700px]'
-          }`}
-        >
+        <div className={`${darkMode ? 'bg-[#111B21]' : 'bg-white'} shadow-2xl overflow-hidden h-[700px]`}>
           {viewMode === 'desktop' ? (
             <div className="flex h-full">
               <div className="w-[420px]">
@@ -2461,16 +2457,15 @@ const WhatsAppClone: React.FC = () => {
               {renderChatWindow()}
             </div>
           ) : (
-            <div className="h-full">
-              {!selectedChat ? (
-                <>
-                  {activeTab === 'chats' && renderChatList()}
-                  {activeTab === 'status' && renderStatusTab()}
-                  {activeTab === 'calls' && renderCallsTab()}
-                </>
-              ) : (
-                renderChatWindow()
-              )}
+            <div className="flex h-full">
+              <div className="w-[420px]">
+                {activeTab === 'chats' && renderChatList()}
+                {activeTab === 'status' && renderStatusTab()}
+                {activeTab === 'calls' && renderCallsTab()}
+              </div>
+              <div className="max-w-[390px] mx-auto h-full overflow-hidden">
+                {renderChatWindow()}
+              </div>
             </div>
           )}
         </div>
